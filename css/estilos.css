@@ -1,9 +1,15 @@
-
-h1{
-    font-family: sans-serif;
-    border-bottom: 1px solid blacK;
+table{
+    text-align: center;
+    margin: auto;
+    margin: 5%;
 }
+table,tr,td{         
+    border: 2px solid black;
+    border-collapse:collapse ;
+    background-color: white;
 
-p{
-    background-color: lightgray;
+}
+td {width: 50px;
+    height: 50px;
+    text-align: center;
 }
