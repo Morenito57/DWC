@@ -9,8 +9,8 @@ class Tablero {
     crearTablero() {
 
         this.arrayTablero = [];
-
         let adelante = true;
+
         while (adelante){
 
             if((this.filas * this.columnas) % 2 == 0){
@@ -39,6 +39,8 @@ class Tablero {
 
     dibujarTablero() {
         // Creamos el tablero en html
+        document.write('<h1>Juego de memoria</h1>');
+        document.write('<h2>Yeray Rus Martinez</h2>');
         document.write('<table>');
 
         for (let i = 0; i < this.filas; i++) {
@@ -63,39 +65,66 @@ class Memoria extends Tablero {
     }
 
     colocarParejas() {
-        let posFila;
-        let posColumna;
+        let repetir = true;
+        let posFila = 0;
+        let posColumna = 0;
         let contador_parejas = 1;
         let contadorNumParejas = 0;
-        let maxParejas = (maxColumnas * maxFilas) / 2;
+        let maxParejas = (this.columnas * this.filas) / 2;
 
         while (contadorNumParejas < maxParejas) {
             posFila = Math.floor(Math.random() * this.filas);
             posColumna = Math.floor(Math.random() * this.columnas);
+            if (this.arrayTablero[posFila][posColumna] == '') {
+                this.arrayTablero[posFila][posColumna] = contador_parejas;
+                
 
-            if (this.arrayTablero[posFila][posColumna] = '') {
-                this.arrayTablero[posFila][posColumna] = contador_parejas;
-                posFila = Math.floor(Math.random() * this.filas);
-                posColumna = Math.floor(Math.random() * this.columnas);
-                this.arrayTablero[posFila][posColumna] = contador_parejas;
+                while (repetir) {
+                    posFila = Math.floor(Math.random() * this.filas);
+                    posColumna = Math.floor(Math.random() * this.columnas);
+        
+                    if (this.arrayTablero[posFila][posColumna] == '') {
+                        this.arrayTablero[posFila][posColumna] = contador_parejas;
+                        repetir = false;
+                    };
+                };
+
                 contador_parejas++;
                 contadorNumParejas++;
+                repetir = true;
             };
-            if (contador_parejas = 10) {
-                this.arrayTablero[posFila][posColumna] = contador_parejas;
-                posFila = Math.floor(Math.random() * this.filas);
-                posColumna = Math.floor(Math.random() * this.columnas);
-                this.arrayTablero[posFila][posColumna] = contador_parejas;
+            if (contador_parejas == 10) {
+
+
+                while (repetir) {
+                    posFila = Math.floor(Math.random() * this.filas);
+                    posColumna = Math.floor(Math.random() * this.columnas);
+                    if (this.arrayTablero[posFila][posColumna] == '') {
+                        this.arrayTablero[posFila][posColumna] = contador_parejas;
+                        while (repetir) {
+                            posFila = Math.floor(Math.random() * this.filas);
+                            posColumna = Math.floor(Math.random() * this.columnas);
+                
+                            if (this.arrayTablero[posFila][posColumna] == '') {
+                                this.arrayTablero[posFila][posColumna] = contador_parejas;
+                                repetir = false;
+                            }
+                        }
+                    }
+                }
+
                 contador_parejas = 1;
                 contadorNumParejas++;
-            };
+                repetir = true;
+
+            }
 
 
-        };
+        }
     }
 
 }
 
-let tablero1 = new Tablero( prompt('¿Cuántas filas quieres en la tabla?'), prompt('¿Cuántas columnas quieres en la tabla?'));
+let tablero1 = new Memoria( prompt('¿Cuántas filas quieres en la tabla?'), prompt('¿Cuántas columnas quieres en la tabla?'));
 console.log(tablero1.arrayTablero);
 tablero1.dibujarTablero();
