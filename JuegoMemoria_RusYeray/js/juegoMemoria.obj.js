@@ -12,7 +12,12 @@ class Tablero {
         let adelante = true;
 
         while (adelante){
+            if(this.filas == 2 && this.columnas == 2){
+                alert('La tabla que quieres crear es demasiado pequeña, haz el juego mas dificil.');
+                this.filas = prompt('¿Cuántas filas quieres en la tabla?');
+                this.columnas = prompt('¿Cuántas columnas quieres en la tabla?');
 
+            }
             if((this.filas * this.columnas) % 2 == 0){
 
                 // Crear array bidimensional para guardar las minas
@@ -26,10 +31,17 @@ class Tablero {
                 }
 
                 adelante = false;
-            }else{
-                alert('El numero de casillas de la tabla es impar, introduzca otra vez las dimensiones de la tabla');
+            }
+            else if(this.filas <= 0 || this.columnas <= 0){
+                alert('El numero que has introducido de filas o columnas es igual o menor a cero, introduce un numero de filas y columnas mas alto.');
                 this.filas = prompt('¿Cuántas filas quieres en la tabla?');
                 this.columnas = prompt('¿Cuántas columnas quieres en la tabla?');
+
+            }else if((this.filas * this.columnas) % 2 != 0){
+                alert('El numero que has introducido de filas o columnas es impar o no son validos, introduzca otra vez los datos');
+                this.filas = prompt('¿Cuántas filas quieres en la tabla?');
+                this.columnas = prompt('¿Cuántas columnas quieres en la tabla?');
+
             }
         }
         
