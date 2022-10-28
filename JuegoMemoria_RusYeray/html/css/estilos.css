@@ -4,11 +4,15 @@ h1, h2{
 
 table{
     text-align: center;
-    margin-top: 10%;
-    margin-left: 45%;
+    width: 20%;
+    height: 20%;
+
+
 }
 table,tr,td{         
     border: 2px solid black;
+    margin-top: 10px;
+    margin: auto;
     border-collapse:collapse ;
     background-color: white;
 

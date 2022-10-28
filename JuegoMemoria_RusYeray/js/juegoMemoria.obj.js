@@ -76,7 +76,7 @@ class Memoria extends Tablero {
             posFila = Math.floor(Math.random() * this.filas);
             posColumna = Math.floor(Math.random() * this.columnas);
             if (this.arrayTablero[posFila][posColumna] == '') {
-                this.arrayTablero[posFila][posColumna] = contador_parejas;
+                this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
                 
 
                 while (repetir) {
@@ -84,7 +84,7 @@ class Memoria extends Tablero {
                     posColumna = Math.floor(Math.random() * this.columnas);
         
                     if (this.arrayTablero[posFila][posColumna] == '') {
-                        this.arrayTablero[posFila][posColumna] = contador_parejas;
+                        this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
                         repetir = false;
                     };
                 };
@@ -100,13 +100,13 @@ class Memoria extends Tablero {
                     posFila = Math.floor(Math.random() * this.filas);
                     posColumna = Math.floor(Math.random() * this.columnas);
                     if (this.arrayTablero[posFila][posColumna] == '') {
-                        this.arrayTablero[posFila][posColumna] = contador_parejas;
+                        this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
                         while (repetir) {
                             posFila = Math.floor(Math.random() * this.filas);
                             posColumna = Math.floor(Math.random() * this.columnas);
                 
                             if (this.arrayTablero[posFila][posColumna] == '') {
-                                this.arrayTablero[posFila][posColumna] = contador_parejas;
+                                this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
                                 repetir = false;
                             }
                         }
