@@ -19,15 +19,15 @@ class Tablero {
         /*Hago un bucle para que me haga la tabla si es par y si no que me pregunte otra vez.*/
         while (adelante){
 
-            /*Si filas y columnas son iguales a 2 dara un aviso.*/
-            if(this.filas == 2 && this.columnas == 2){
-                alert('La tabla que quieres crear es demasiado pequeña, haz el juego mas dificil.');
+            /*Si filas y columnas son mas grandes que 100 que de un aviso.*/
+            if(this.filas > 50 || this.columnas > 50){
+                alert('La tabla que quieres crear es demasiado grande, te has pasado 4 pueblos.');
                 this.filas = prompt('¿Cuántas filas quieres en la tabla?');
                 this.columnas = prompt('¿Cuántas columnas quieres en la tabla?');
-
             }
+
             /*Si el numero de casillas es divisible entre 2 creara la array bidimensional para guardar las parejas.*/
-            if((this.filas * this.columnas) % 2 == 0){
+            else if((this.filas * this.columnas) % 2 == 0){
 
                 /*Crea la tabla apartir de los datos proporcionados.*/
                 for (let fila = 0; fila < this.filas; fila++) {
@@ -52,10 +52,8 @@ class Tablero {
                 alert('El numero que has introducido de filas o columnas es impar o no son validos, introduzca otra vez los datos');
                 this.filas = prompt('¿Cuántas filas quieres en la tabla?');
                 this.columnas = prompt('¿Cuántas columnas quieres en la tabla?');
-
             }
         }
-        
     }
 
     /*Esta funcion dibuja el tablero en el archivo html. */
