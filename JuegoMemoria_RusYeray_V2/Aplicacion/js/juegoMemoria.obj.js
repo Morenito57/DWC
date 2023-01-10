@@ -74,6 +74,28 @@ class Tablero {
         document.write('</table>');
     }
 
+    dibujarTableroDOM(){
+        // Creamos el tablero en DOM
+        let tabla = document.createElement('table');
+        let fila;
+        let columna;
+
+        for (let i = 0; i < this.filas; i++) {
+            fila = document.createElement('tr');
+            tabla.appendChild(fila);
+
+            for (let j = 0; j < this.columnas; j++) {
+                columna = document.createElement('td');
+                columna.id = `f${i}_c${j}`;
+                columna.dataset.fila = i;
+                columna.dataset.columna = j;
+                columna.dataset.despejado = false;
+                fila.appendChild(columna);
+            }
+        }
+        document.body.appendChild(tabla);
+    }
+
 }
 
 /*Aqui creo la classe memoria que hereda de tablero y que utiliza sus constructores, y tiene la funcion colocarParejas(). */
@@ -82,6 +104,8 @@ class Memoria extends Tablero {
         super(filas, columnas);
 
         this.colocarParejas();
+        this.dibujarTableroDOM();
+
     }
 
     /*Inicio la funcion colocarParejas(). */
@@ -191,9 +215,27 @@ class Memoria extends Tablero {
         }
     }
 
+    dibujarTableroDOM(){
+        super.dibujarTableroDOM();
+
+        let celda;
+
+        this.despejar = this.despejar.bind(this);
+        this.marcar = this.marcar.bind(this);
+
+        for (let i = 0; i < this.filas; i++) {
+            for (let j = 0; j < this.columnas; j++){
+                celda = document.getElementById(`f${i}_c${j}`);
+
+                celda.addEventListener('click', this.despejar);
+                celda.addEventListener('contextmenu', this.marcar);
+            }
+        }
+        console.log(this.arrayTablero);
+    }
+
 }
 
-
-let tablero1 = new Memoria( prompt('¿Cuántas filas quieres en la tabla?'), prompt('¿Cuántas columnas quieres en la tabla?'));
-console.log(tablero1.arrayTablero);
-tablero1.dibujarTablero();
+window.onload = function() {
+    let memorin1 = new Memoria(prompt('¿Cuántas filas quieres en la tabla?'), prompt('¿Cuántas columnas quieres en la tabla?'));
+}
