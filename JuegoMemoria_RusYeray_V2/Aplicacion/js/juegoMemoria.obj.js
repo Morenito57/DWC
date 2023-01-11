@@ -57,7 +57,7 @@ class Tablero {
     }
 
     /*Esta funcion dibuja el tablero en el archivo html. */
-    /*dibujarTablero() {
+    dibujarTablero() {
         document.write('<h1>Juego de memoria</h1>');
         document.write('<h2>Yeray Rus Martinez</h2>');
         document.write('<table>');
@@ -72,7 +72,7 @@ class Tablero {
             document.write('</tr>');
         }
         document.write('</table>');
-    }*/
+    }
 
     dibujarTableroDOM(){
         // Creamos el tablero en DOM
@@ -87,11 +87,13 @@ class Tablero {
             for (let j = 0; j < this.columnas; j++) {
                 columna = document.createElement('td');
                 columna.id = `f${i}_c${j}`;
-                fila.appendChild(columna);
                 columna.dataset.fila = i;
                 columna.dataset.columna = j;
+                columna.dataset.despejado = false;
+                fila.appendChild(columna);
             }
         }
+
         document.body.appendChild(tabla);
     }
 
@@ -104,7 +106,6 @@ class Memoria extends Tablero {
 
         this.colocarParejas();
         this.dibujarTableroDOM();
-
     }
 
     /*Inicio la funcion colocarParejas(). */
@@ -220,12 +221,14 @@ class Memoria extends Tablero {
         let celda;
 
         this.despejar = this.despejar.bind(this);
+        this.marcar = this.marcar.bind(this);
 
         for (let i = 0; i < this.filas; i++) {
             for (let j = 0; j < this.columnas; j++){
                 celda = document.getElementById(`f${i}_c${j}`);
 
-                celda.addEventListener('contextmenu', this.despejar);
+                celda.addEventListener('click', this.despejar);
+                celda.addEventListener('contextmenu', this.marcar);
             }
         }
         console.log(this.arrayTablero);
@@ -233,5 +236,8 @@ class Memoria extends Tablero {
 
 }
 
-let tablero1 = new Memoria( prompt('¿Cuántas filas quieres en la tabla?'), prompt('¿Cuántas columnas quieres en la tabla?'));
-tablero1.dibujarTableroDOM();
+
+window.onload = function() {
+    let tablero1 = new Memoria( prompt('¿Cuántas filas quieres en la tabla?'), prompt('¿Cuántas columnas quieres en la tabla?'));
+    tablero1.dibujarTableroDOM();
+}
