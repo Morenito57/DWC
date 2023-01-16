@@ -239,22 +239,7 @@ class Memoria extends Tablero {
         this.despejarCelda(celda);
     }
     despejarCelda(celda) {
-        let fila = parseInt(celda.dataset.fila);
-        let columna = parseInt(celda.dataset.columna);
-
-        // Marcar la celda despejada
-        celda.dataset.despejado = true;
-        celda.style.backgroundColor = "lightgrey";
-        celda.removeEventListener('contextmenu', this.despejar); 
-
-        let contadorParejasDestapadas = 0;
         
-        celda.innerHTML = valorCelda;
-        this.despejarCelda(celdaNueva);
-        contadorParejasDestapadas++;
-
-        if (contadorParejasDestapadas == 2){
-            
         }
     }
 }
