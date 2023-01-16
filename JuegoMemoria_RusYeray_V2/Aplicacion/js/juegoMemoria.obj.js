@@ -245,12 +245,21 @@ class Memoria extends Tablero {
         // Marcar la celda despejada
         celda.dataset.despejado = true;
         celda.style.backgroundColor = "lightgrey";
-        celda.removeEventListener('contextmenu', this.despejar);                             
+        celda.removeEventListener('contextmenu', this.despejar); 
+
+        let contadorParejasDestapadas = 0;
+        
+        celda.innerHTML = valorCelda;
+        this.despejarCelda(celdaNueva);
+        contadorParejasDestapadas++;
+
+        if (contadorParejasDestapadas == 2){
+            
+        }
     }
 }
 
 
 window.onload = function() {
     let tablero1 = new Memoria( prompt('¿Cuántas filas quieres en la tabla?'), prompt('¿Cuántas columnas quieres en la tabla?'));
-    tablero1.dibujarTableroDOM();
 }
