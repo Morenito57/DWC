@@ -226,7 +226,7 @@ class Memoria extends Tablero {
             for (let j = 0; j < this.columnas; j++){
                 celda = document.getElementById(`f${i}_c${j}`);
 
-                celda.addEventListener('click', this.despejar);
+                celda.addEventListener('contextmenu', this.despejar);
             }
         }
         console.log(this.arrayTablero);
@@ -238,7 +238,6 @@ class Memoria extends Tablero {
         
         this.despejarCelda(celda);
     }
-
     despejarCelda(celda) {
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
@@ -246,10 +245,8 @@ class Memoria extends Tablero {
         // Marcar la celda despejada
         celda.dataset.despejado = true;
         celda.style.backgroundColor = "lightgrey";
-        celda.removeEventListener('click', this.despejar);
-        
+        celda.removeEventListener('contextmenu', this.despejar);                             
     }
-
 }
 
 
