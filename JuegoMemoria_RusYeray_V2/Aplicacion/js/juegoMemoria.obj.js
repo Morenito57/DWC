@@ -139,7 +139,7 @@ class Memoria extends Tablero {
             if (this.arrayTablero[posFila][posColumna] == '') {
 
                 /*Añado la primera parte de la pareja a la tabla. */
-                this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
+                this.arrayTablero[posFila][posColumna] = contador_parejas;
                 
                 /*Me meto en otro bucle para añadir la segunda parte de la parejas. */
                 while (repetir) {
@@ -152,7 +152,7 @@ class Memoria extends Tablero {
                     if (this.arrayTablero[posFila][posColumna] == '') {
 
                         /*Añado la primera parte de la pareja a la tabla. */
-                        this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
+                        this.arrayTablero[posFila][posColumna] = contador_parejas;
 
                         /*Paso la variable repetir a false para salir del bucle */
                         repetir = false;
@@ -180,7 +180,7 @@ class Memoria extends Tablero {
                     if (this.arrayTablero[posFila][posColumna] == '') {
 
                         /*Añado la primera parte de la pareja a la tabla. */
-                        this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
+                        this.arrayTablero[posFila][posColumna] = contador_parejas;
 
                         /*Me meto en otro bucle para añadir la segunda parte de la parejas. */
                         while (repetir) {
@@ -193,7 +193,7 @@ class Memoria extends Tablero {
                             if (this.arrayTablero[posFila][posColumna] == '') {
 
                                 /*Añado la primera parte de la pareja a la tabla. */
-                                this.arrayTablero[posFila][posColumna] = "<img src='img/"+contador_parejas+".png'>";
+                                this.arrayTablero[posFila][posColumna] = contador_parejas;
 
                                 /*Paso la variable repetir a true para el siguiente bucle. */
                                 repetir = false;
@@ -239,7 +239,60 @@ class Memoria extends Tablero {
         this.despejarCelda(celda);
     }
     despejarCelda(celda) {
+        let fila = parseInt(celda.dataset.fila);
+        let columna = parseInt(celda.dataset.columna);
+
+        let imagen = document.createElement('img');
+        imagen.style.height = "50px";
+
+        let contadorParejasDestapadas = 0;
+        let numIntentos = 1;
+
+        let rutaPareja1;
+        let rutaPpareja2;
+        let valorPareja1;
+        let valorPareja2;
+
+        let puntosJugador;
         
+        contadorParejasDestapadas++;
+
+
+
+        if(contadorParejasDestapadas == 1 && celda.lastChild == null){
+            valorPareja1 = this.arrayTablero[fila][columna];
+            celda.appendChild(imagen);
+            rutaPareja1 = celda.lastChild.src.split('/').slice(-2).join('/');
+            imagen.src = "img/"+valorPareja1+".png'>";
+
+        }else if (contadorParejasDestapadas == 2 && celda.lastChild != null){
+
+            valorPareja2 = this.arrayTablero[fila][columna];
+            celda.appendChild(imagen);
+            rutaPareja2 = celda.lastChild.src.split('/').slice(-2).join('/');
+            imagen.src = "img/"+valorPareja2+".png'>";
+
+            /*if(valorPareja1 == valorPareja2 && numIntentos == 1){
+                puntosJugador = puntosJugador + 10;
+                contadorParejasDestapadas = 0;
+                numIntentos = 1;
+            }else if(valorPareja1 == valorPareja2 && numIntentos == 2){
+                puntosJugador = puntosJugador + 5;
+                contadorParejasDestapadas = 0;
+                numIntentos = 1;
+            }else if(valorPareja1 == valorPareja2 && numIntentos == 3){
+                puntosJugador = puntosJugador + 2.5;
+                contadorParejasDestapadas = 0;
+                numIntentos = 1;
+            }else if(valorPareja1 == valorPareja2 && numIntentos > 3){
+                puntosJugador = puntosJugador + 0;
+                contadorParejasDestapadas = 0;
+                numIntentos = 1;
+            }else{
+                contadorParejasDestapadas = 0;
+                numIntentos++;
+            }*/
+
         }
     }
 }
