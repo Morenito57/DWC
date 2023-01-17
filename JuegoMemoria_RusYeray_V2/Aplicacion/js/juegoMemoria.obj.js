@@ -77,8 +77,24 @@ class Tablero {
     dibujarTableroDOM(){
         // Creamos el tablero en DOM
         let tabla = document.createElement('table');
+        let h1 = document.createElement('h1');
+        let h2 = document.createElement('h2');
+        let reiniciar = document.createElement('input');
+
+
         let fila;
         let columna;
+        
+        h1.innerHTML = 'Juego de memoria';
+        h2.innerHTML = 'Yeray Rus Martinez';
+
+        reiniciar.setAttribute('type','button');
+        reiniciar.setAttribute('value','Mensaje');
+        reiniciar.setAttribute('onclick','confirm()');
+
+
+        reiniciar.innerHTML = 'Reiniciar';
+
 
         for (let i = 0; i < this.filas; i++) {
             fila = document.createElement('tr');
@@ -93,8 +109,11 @@ class Tablero {
                 fila.appendChild(columna);
             }
         }
-
+        document.body.appendChild(h1);
+        document.body.appendChild(h2);
+        document.body.appendChild(reiniciar);
         document.body.appendChild(tabla);
+
     }
 
 }
@@ -243,7 +262,6 @@ class Memoria extends Tablero {
         let columna = parseInt(celda.dataset.columna);
 
         let imagen = document.createElement('img');
-        imagen.style.height = "50px";
 
         let contadorParejasDestapadas = 0;
         let numIntentos = 1;
