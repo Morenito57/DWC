@@ -249,7 +249,7 @@ class Memoria extends Tablero {
         let numIntentos = 1;
 
         let rutaPareja1;
-        let rutaPpareja2;
+        let rutaPareja2;
         let valorPareja1;
         let valorPareja2;
 
@@ -263,7 +263,7 @@ class Memoria extends Tablero {
             valorPareja1 = this.arrayTablero[fila][columna];
             celda.appendChild(imagen);
             rutaPareja1 = celda.lastChild.src.split('/').slice(-2).join('/');
-            imagen.src = "img/"+valorPareja1+".png'>";
+            imagen.src = "img/"+valorPareja1+".png";
 
         }else if (contadorParejasDestapadas == 2 && celda.lastChild != null){
 
