@@ -79,6 +79,7 @@ class Tablero {
         let tabla = document.createElement('table');
         let h1 = document.createElement('h1');
         let h2 = document.createElement('h2');
+        let puntuacion = document.createElement('p');
         let reiniciar = document.createElement('a');
 
 
@@ -88,6 +89,7 @@ class Tablero {
         h1.innerHTML = 'Juego de memoria';
         h2.innerHTML = 'Yeray Rus Martinez';
 
+        puntuacion.innerHTML = '/';
 
         reiniciar.setAttribute('href','index.html');
         reiniciar.setAttribute('onclick','return confirmarAccesoURL()');
@@ -109,6 +111,7 @@ class Tablero {
         }
         document.body.appendChild(h1);
         document.body.appendChild(h2);
+        document.body.appendChild(puntuacion);
         document.body.appendChild(reiniciar);
         document.body.appendChild(tabla);
 
