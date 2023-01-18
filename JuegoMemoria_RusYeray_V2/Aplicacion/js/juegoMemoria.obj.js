@@ -89,7 +89,7 @@ class Tablero {
         h1.innerHTML = 'Juego de memoria';
         h2.innerHTML = 'Yeray Rus Martinez';
 
-        puntuacion.innerHTML = '/';
+        puntuacion.innerHTML = 0+'/'+((this.filas*this.columnas)/2)*10;
 
         reiniciar.setAttribute('href','index.html');
         reiniciar.setAttribute('onclick','return confirmarAccesoURL()');
@@ -123,6 +123,16 @@ class Tablero {
 class Memoria extends Tablero {
     constructor(filas, columnas) {
         super(filas, columnas);
+
+        this.contadorParejasDestapadas = 0;
+        this.numIntentos = 1;
+
+        this.rutaPareja1;
+        this.rutaPareja2;
+        this.valorPareja1;
+        this.valorPareja2;
+
+        this.puntosJugador = 0;
 
         this.colocarParejas();
         this.dibujarTableroDOM();
@@ -263,56 +273,49 @@ class Memoria extends Tablero {
         let columna = parseInt(celda.dataset.columna);
 
         let imagen = document.createElement('img');
-
-        let contadorParejasDestapadas = 0;
-        let numIntentos = 1;
-
-        let rutaPareja1;
-        let rutaPareja2;
-        let valorPareja1;
-        let valorPareja2;
-
-        let puntosJugador;
         
-        contadorParejasDestapadas++;
+        this.contadorParejasDestapadas++;
 
 
 
-        /*if(contadorParejasDestapadas == 1 && celda.lastChild == null){
-            valorPareja1 = this.arrayTablero[fila][columna];
+        if(this.contadorParejasDestapadas == 1 && celda.lastChild == null){
+            this.valorPareja1 = this.arrayTablero[fila][columna];
             celda.appendChild(imagen);
-            rutaPareja1 = celda.lastChild.src.split('/').slice(-2).join('/');
-            imagen.src = "img/"+valorPareja1+".png";
-
-        }else if (contadorParejasDestapadas == 2 && celda.lastChild != null){
-
-            valorPareja2 = this.arrayTablero[fila][columna];
+            this.rutaPareja1 = celda;
+            imagen.src = "img/"+this.valorPareja1+".png";
+        }else if (this.contadorParejasDestapadas == 2 && celda.lastChild == null){
+            this.valorPareja2 = this.arrayTablero[fila][columna];
             celda.appendChild(imagen);
-            rutaPareja2 = celda.lastChild.src.split('/').slice(-2).join('/');
-            imagen.src = "img/"+valorPareja2+".png'>";
+            this.rutaPareja2 = celda;
+            imagen.src = "img/"+this.valorPareja2+".png";
 
-            if(valorPareja1 == valorPareja2 && numIntentos == 1){
-                puntosJugador = puntosJugador + 10;
-                contadorParejasDestapadas = 0;
-                numIntentos = 1;
-            }else if(valorPareja1 == valorPareja2 && numIntentos == 2){
-                puntosJugador = puntosJugador + 5;
-                contadorParejasDestapadas = 0;
-                numIntentos = 1;
-            }else if(valorPareja1 == valorPareja2 && numIntentos == 3){
-                puntosJugador = puntosJugador + 2.5;
-                contadorParejasDestapadas = 0;
-                numIntentos = 1;
-            }else if(valorPareja1 == valorPareja2 && numIntentos > 3){
-                puntosJugador = puntosJugador + 0;
-                contadorParejasDestapadas = 0;
-                numIntentos = 1;
+            if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 1){
+                this.puntosJugador = this.puntosJugador + 10;
+                this.contadorParejasDestapadas = 0;
+                this.numIntentos = 1;
+            }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 2){
+                this.puntosJugador = this.puntosJugador + 5;
+                this.contadorParejasDestapadas = 0;
+                this.numIntentos = 1;
+            }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 3){
+                this.puntosJugador = this.puntosJugador + 2.5;
+                this.contadorParejasDestapadas = 0;
+                this.numIntentos = 1;
+            }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos > 3){
+                this.puntosJugador = this.puntosJugador + 0;
+                this.contadorParejasDestapadas = 0;
+                this.numIntentos = 1;
             }else{
-                contadorParejasDestapadas = 0;
-                numIntentos++;
+                setTimeout(function(){
+                this.contadorParejasDestapadas = 0;
+                this.numIntentos++;
+                this.rutaPareja1.removeChild( this.rutaPareja1.lastChild);
+                this.rutaPareja2.removeChild( this.rutaPareja2.lastChild);
+                }, 3000);
+
             }
 
-        }*/
+        }
     }
 }
 
