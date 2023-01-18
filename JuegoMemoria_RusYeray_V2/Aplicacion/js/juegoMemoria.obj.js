@@ -79,7 +79,7 @@ class Tablero {
         let tabla = document.createElement('table');
         let h1 = document.createElement('h1');
         let h2 = document.createElement('h2');
-        let reiniciar = document.createElement('input');
+        let reiniciar = document.createElement('a');
 
 
         let fila;
@@ -88,11 +88,9 @@ class Tablero {
         h1.innerHTML = 'Juego de memoria';
         h2.innerHTML = 'Yeray Rus Martinez';
 
-        reiniciar.setAttribute('type','button');
-        reiniciar.setAttribute('value','Mensaje');
-        reiniciar.setAttribute('onclick','confirm()');
 
-
+        reiniciar.setAttribute('href','index.html');
+        reiniciar.setAttribute('onclick','return confirmarAccesoURL()');
         reiniciar.innerHTML = 'Reiniciar';
 
 
@@ -277,7 +275,7 @@ class Memoria extends Tablero {
 
 
 
-        if(contadorParejasDestapadas == 1 && celda.lastChild == null){
+        /*if(contadorParejasDestapadas == 1 && celda.lastChild == null){
             valorPareja1 = this.arrayTablero[fila][columna];
             celda.appendChild(imagen);
             rutaPareja1 = celda.lastChild.src.split('/').slice(-2).join('/');
@@ -290,7 +288,7 @@ class Memoria extends Tablero {
             rutaPareja2 = celda.lastChild.src.split('/').slice(-2).join('/');
             imagen.src = "img/"+valorPareja2+".png'>";
 
-            /*if(valorPareja1 == valorPareja2 && numIntentos == 1){
+            if(valorPareja1 == valorPareja2 && numIntentos == 1){
                 puntosJugador = puntosJugador + 10;
                 contadorParejasDestapadas = 0;
                 numIntentos = 1;
@@ -309,9 +307,9 @@ class Memoria extends Tablero {
             }else{
                 contadorParejasDestapadas = 0;
                 numIntentos++;
-            }*/
+            }
 
-        }
+        }*/
     }
 }
 

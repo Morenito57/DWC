@@ -7,19 +7,12 @@
     <title>Juego de Memoria</title>
     <link rel="stylesheet" href="css/estilos.css">
     <script src="js/juegoMemoria.obj.js"></script>
+    <script> 
+        function confirmarAccesoURL(){
+            return confirm("¿Está seguro que desea reiniciar el juego?");
+        }
+  </script>
 </head>
 <body>
-    <script>
-        function mensaje(){
-            var mensaje;
-    var opcion = confirm("Clicka en Aceptar o Cancelar");
-    if (opcion == true) {
-        mensaje = "Has clickado OK";
-	} else {
-	    mensaje = "Has clickado Cancelar";
-	}
-	document.getElementById("ejemplo").innerHTML = mensaje;
-        }
-    </script>
 </body>
 </html>
