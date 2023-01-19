@@ -88,7 +88,7 @@ class Tablero {
         
         h1.innerHTML = 'Juego de memoria';
         h2.innerHTML = 'Yeray Rus Martinez';
-
+        puntuacion.id = 'puntos';
         puntuacion.innerHTML = 0+'/'+((this.filas*this.columnas)/2)*10;
 
         reiniciar.setAttribute('href','index.html');
@@ -123,6 +123,7 @@ class Tablero {
 class Memoria extends Tablero {
     constructor(filas, columnas) {
         super(filas, columnas);
+
 
         this.contadorParejasDestapadas = 0;
         this.numIntentos = 1;
@@ -293,30 +294,45 @@ class Memoria extends Tablero {
                 this.puntosJugador = this.puntosJugador + 10;
                 this.contadorParejasDestapadas = 0;
                 this.numIntentos = 1;
+                document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
+                this.rutaPareja1.dataset.despejado = true;
+                this.rutaPareja2.dataset.despejado = true;
             }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 2){
                 this.puntosJugador = this.puntosJugador + 5;
                 this.contadorParejasDestapadas = 0;
                 this.numIntentos = 1;
+                document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
+                this.rutaPareja1.dataset.despejado = true;
+                this.rutaPareja2.dataset.despejado = true;
             }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 3){
                 this.puntosJugador = this.puntosJugador + 2.5;
                 this.contadorParejasDestapadas = 0;
                 this.numIntentos = 1;
+                document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
+                this.rutaPareja1.dataset.despejado = true;
+                this.rutaPareja2.dataset.despejado = true;
             }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos > 3){
                 this.puntosJugador = this.puntosJugador + 0;
                 this.contadorParejasDestapadas = 0;
                 this.numIntentos = 1;
+                document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
+                this.rutaPareja1.dataset.despejado = true;
+                this.rutaPareja2.dataset.despejado = true;
             }else{
-                setTimeout(function(){
+                /*setTimeout(function(){*/
                 this.contadorParejasDestapadas = 0;
                 this.numIntentos++;
                 this.rutaPareja1.removeChild( this.rutaPareja1.lastChild);
                 this.rutaPareja2.removeChild( this.rutaPareja2.lastChild);
-                }, 3000);
+                /*}, 3000);*/
 
             }
 
+
         }
     }
+
+
 }
 
 
