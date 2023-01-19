@@ -124,6 +124,7 @@ class Memoria extends Tablero {
     constructor(filas, columnas) {
         super(filas, columnas);
 
+        this.numParejasDespejadas = filas * columnas / 2;
 
         this.contadorParejasDestapadas = 0;
         this.numIntentos = 1;
@@ -297,6 +298,7 @@ class Memoria extends Tablero {
                 document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
                 this.rutaPareja1.dataset.despejado = true;
                 this.rutaPareja2.dataset.despejado = true;
+                this.numParejasDespejadas--;
             }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 2){
                 this.puntosJugador = this.puntosJugador + 5;
                 this.contadorParejasDestapadas = 0;
@@ -304,6 +306,7 @@ class Memoria extends Tablero {
                 document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
                 this.rutaPareja1.dataset.despejado = true;
                 this.rutaPareja2.dataset.despejado = true;
+                this.numParejasDespejadas--;
             }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 3){
                 this.puntosJugador = this.puntosJugador + 2.5;
                 this.contadorParejasDestapadas = 0;
@@ -311,6 +314,7 @@ class Memoria extends Tablero {
                 document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
                 this.rutaPareja1.dataset.despejado = true;
                 this.rutaPareja2.dataset.despejado = true;
+                this.numParejasDespejadas--;
             }else if(this.valorPareja1 == this.valorPareja2 && this.numIntentos > 3){
                 this.puntosJugador = this.puntosJugador + 0;
                 this.contadorParejasDestapadas = 0;
@@ -318,6 +322,7 @@ class Memoria extends Tablero {
                 document.getElementById('puntos').innerHTML=this.puntosJugador+'/'+((this.filas*this.columnas)/2)*10;
                 this.rutaPareja1.dataset.despejado = true;
                 this.rutaPareja2.dataset.despejado = true;
+                this.numParejasDespejadas--;
             }else{
                 /*setTimeout(function(){*/
                 this.contadorParejasDestapadas = 0;
@@ -328,11 +333,20 @@ class Memoria extends Tablero {
 
             }
 
-
+            if (this.numParejasDespejadas == 0){
+                    this.resolverTablero(true);
+            }
         }
     }
 
+    resolverTablero(hasGanado) {
 
+        if (hasGanado) {
+            alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS.');
+        } else {
+            alert('LO SIENTO, HAS PERDIDO');
+        }
+    }
 }
 
 
