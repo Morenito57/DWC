@@ -291,11 +291,14 @@ class Memoria extends Tablero {
             celda.appendChild(imagen);
             this.rutaPareja1 = celda;
             imagen.src = "img/"+this.valorPareja1+".png";
+            celda.removeEventListener('contextmenu', this.despejar);
+
         }else if (this.contadorParejasDestapadas == 2 && celda.lastChild == null){
             this.valorPareja2 = this.arrayTablero[fila][columna];
             celda.appendChild(imagen);
             this.rutaPareja2 = celda;
             imagen.src = "img/"+this.valorPareja2+".png";
+            this.rutaPareja2.removeEventListener('contextmenu', this.despejar);
 
             if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 1){
                 this.puntosJugador = this.puntosJugador + 10;
@@ -335,9 +338,10 @@ class Memoria extends Tablero {
                     this.numIntentos++;
                     this.rutaPareja1.removeChild( this.rutaPareja1.lastChild);
                     this.rutaPareja2.removeChild( this.rutaPareja2.lastChild);
+                    this.rutaPareja1.addEventListener('contextmenu', this.despejar);
+                    this.rutaPareja2.addEventListener('contextmenu', this.despejar);
                 }
-                setTimeout(darLaVuelta.bind(this), 1000);
-
+                setTimeout(darLaVuelta.bind(this), 2000);
             }
 
             if (this.numParejasDespejadas == 0){
@@ -363,7 +367,7 @@ class Memoria extends Tablero {
     resolverTablero(hasGanado) {
 
         if (hasGanado) {
-            alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS EN UN TIEMPO DE '+ this.contador_m+':'+this.contador_s+' .');
+            alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS EN UN TIEMPO DE '+ this.contador_m+'m y '+this.contador_s+'s .');
         } else {
             alert('LO SIENTO, HAS PERDIDO');
         }
