@@ -346,13 +346,24 @@ class Memoria extends Tablero {
         }
     }
 
+    cronometro() {
 
+        function tiempo(){
+            if(this.contador_s == 60){
+                this.contador_s = 0;
+                this.contador_m++;
+            }
+            this.contador_s++;
+        }
+        setInterval(tiempo.bind(this),1000);
+
+        }
 
 
     resolverTablero(hasGanado) {
 
         if (hasGanado) {
-            alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS EN UN TIEMPO DE .');
+            alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS EN UN TIEMPO DE '+ this.contador_m+':'+this.contador_s+' .');
         } else {
             alert('LO SIENTO, HAS PERDIDO');
         }
