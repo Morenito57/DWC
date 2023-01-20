@@ -336,7 +336,7 @@ class Memoria extends Tablero {
                     this.rutaPareja1.removeChild( this.rutaPareja1.lastChild);
                     this.rutaPareja2.removeChild( this.rutaPareja2.lastChild);
                 }
-                setTimeout(darLaVuelta, 1000);
+                setTimeout(darLaVuelta.bind(this), 1000);
 
             }
 
