@@ -250,6 +250,7 @@ class Memoria extends Tablero {
         }
     }
 
+    /*Inicio la funcion  dibujarTableroDOM*/
     dibujarTableroDOM(){
         super.dibujarTableroDOM();
         this.cronometro();
@@ -274,18 +275,21 @@ class Memoria extends Tablero {
         
         this.despejarCelda(celda);
     }
+
     despejarCelda(celda) {
+
+        /*Esta barra de codigo la he puesto para que no salga el menu de opciones que sale cuando clicas*/
         document.oncontextmenu = function(){return false}
 
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
 
+        /*Creo un elemento img*/
         let imagen = document.createElement('img');
         
         this.contadorParejasDestapadas++;
 
-
-
+        /*La primera casilla destapada cojo sus datos de valor y ubicacion y le añado la imagen que corresponde con la array*/
         if(this.contadorParejasDestapadas == 1 && celda.lastChild == null){
             this.valorPareja1 = this.arrayTablero[fila][columna];
             celda.appendChild(imagen);
@@ -293,6 +297,7 @@ class Memoria extends Tablero {
             imagen.src = "img/"+this.valorPareja1+".png";
             celda.removeEventListener('contextmenu', this.despejar);
 
+        /*La segunda casilla destapada cojo sus datos de valor y ubicacion y le añado la imagen que corresponde con la array*/
         }else if (this.contadorParejasDestapadas == 2 && celda.lastChild == null){
             this.valorPareja2 = this.arrayTablero[fila][columna];
             celda.appendChild(imagen);
@@ -300,6 +305,7 @@ class Memoria extends Tablero {
             imagen.src = "img/"+this.valorPareja2+".png";
             this.rutaPareja2.removeEventListener('contextmenu', this.despejar);
 
+            /*Cuando ya has clicado dos veces se mira si son iguales las parejas y cuantos intentos llevas y segun cuantos lleves se te añadiran mas o menos puntos, y si no son iguales se te añadiran mas intentos y se quedara la imagen de la pareja 2s*/
             if(this.valorPareja1 == this.valorPareja2 && this.numIntentos == 1){
                 this.puntosJugador = this.puntosJugador + 10;
                 this.contadorParejasDestapadas = 0;
@@ -344,14 +350,15 @@ class Memoria extends Tablero {
                 setTimeout(darLaVuelta.bind(this), 2000);
             }
 
+            /*Si el contador de las parejas llega a 0 significara que has ganado el juego y te saldra un aviso*/
             if (this.numParejasDespejadas == 0){
                     this.resolverTablero(true);
             }
         }
     }
 
+    /*Esta es la funcion del cronometro que cuenta los segundos y minutos en tiempo real */
     cronometro() {
-
         function tiempo(){
             if(this.contador_s == 60){
                 this.contador_s = 0;
@@ -361,11 +368,10 @@ class Memoria extends Tablero {
         }
         setInterval(tiempo.bind(this),1000);
 
-        }
+    }
 
-
+    /*Esta es la funcion de resolver tablero que te avisara cuando ganes, te pondra un mensaje de enhorabuena con los puntos conseguidos y en el tiempo que lo has echo */
     resolverTablero(hasGanado) {
-
         if (hasGanado) {
             alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS EN UN TIEMPO DE '+ this.contador_m+'m y '+this.contador_s+'s .');
         } else {
