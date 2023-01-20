@@ -82,7 +82,6 @@ class Tablero {
         let puntuacion = document.createElement('p');
         let reiniciar = document.createElement('a');
 
-
         let fila;
         let columna;
         
@@ -136,8 +135,12 @@ class Memoria extends Tablero {
 
         this.puntosJugador = 0;
 
+        this.contador_s = 0;
+        this.contador_m = 0;
+
         this.colocarParejas();
         this.dibujarTableroDOM();
+        this.cronometro();
     }
 
     /*Inicio la funcion colocarParejas(). */
@@ -249,6 +252,7 @@ class Memoria extends Tablero {
 
     dibujarTableroDOM(){
         super.dibujarTableroDOM();
+        this.cronometro();
 
         let celda;
 
@@ -271,6 +275,8 @@ class Memoria extends Tablero {
         this.despejarCelda(celda);
     }
     despejarCelda(celda) {
+        document.oncontextmenu = function(){return false}
+
         let fila = parseInt(celda.dataset.fila);
         let columna = parseInt(celda.dataset.columna);
 
@@ -324,12 +330,13 @@ class Memoria extends Tablero {
                 this.rutaPareja2.dataset.despejado = true;
                 this.numParejasDespejadas--;
             }else{
-                /*setTimeout(function(){*/
-                this.contadorParejasDestapadas = 0;
-                this.numIntentos++;
-                this.rutaPareja1.removeChild( this.rutaPareja1.lastChild);
-                this.rutaPareja2.removeChild( this.rutaPareja2.lastChild);
-                /*}, 3000);*/
+                function darLaVuelta(){
+                    this.contadorParejasDestapadas = 0;
+                    this.numIntentos++;
+                    this.rutaPareja1.removeChild( this.rutaPareja1.lastChild);
+                    this.rutaPareja2.removeChild( this.rutaPareja2.lastChild);
+                }
+                setTimeout(darLaVuelta, 1000);
 
             }
 
@@ -339,10 +346,13 @@ class Memoria extends Tablero {
         }
     }
 
+
+
+
     resolverTablero(hasGanado) {
 
         if (hasGanado) {
-            alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS.');
+            alert('ENHORABUENA, HAS GANADO CON '+this.puntosJugador+' PUNTOS EN UN TIEMPO DE .');
         } else {
             alert('LO SIENTO, HAS PERDIDO');
         }
